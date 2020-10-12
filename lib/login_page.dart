@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'pag1.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -69,17 +70,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login App'),
-      ),
+//      appBar: AppBar(
+//        title: Text('Login App'),
+//      ),
+      resizeToAvoidBottomPadding: false,
       body: Container(
-        padding: EdgeInsets.all(16.0),
+//        padding: EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment
                 .stretch, //Used to stretch a button of its parent properties.
-            children: buildInputs() + buildSubmitButtons(),
+            children: buildSubmitButtons(),
           ),
         ),
       ),
@@ -102,16 +104,161 @@ class _LoginPageState extends State<LoginPage> {
     ];
   }
 
-  List<Widget> buildSubmitButtons() {
+   buildSubmitButtons() {
     if (_formType == FormType.login) {
       return [
-        RaisedButton(
-          child: Text(
-            'LOGIN',
-            style: TextStyle(fontSize: 20.0),
-          ),
-          onPressed: validateAndSubmit,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child : Stack(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 110, 0, 0),
+                    child: Text(
+                      'Hello',
+                      style: TextStyle( fontSize:80,fontWeight :FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 175, 0, 0),
+                    child: Text(
+                      'There',
+                      style: TextStyle( fontSize:80,fontWeight :FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(240, 175, 0, 0),
+
+                    child: Text(
+                      '.',
+                      style: TextStyle( fontSize:80,fontWeight :FontWeight.bold,color:Colors.green),
+
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 35,left:20,right:20),
+              child: Column(
+                children: <Widget>[
+
+                  TextFormField(
+                    validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+                    onSaved: (value) => _email = value,
+                    decoration: InputDecoration(
+                        labelText: 'EMAIL',
+
+                        labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color:Colors.grey,
+
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color:Colors.green)
+                        )
+
+
+                    ),
+
+                  ),
+                  SizedBox(
+                      height:20.0
+                  ),
+                  TextFormField(
+                    validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+                    onSaved: (value) => _password = value,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'PASSWORD',
+                        labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color:Colors.grey,
+
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color:Colors.green)
+                        )
+
+
+                    ),
+
+                  ),
+//                  SizedBox(height:5.0),
+//                  Container(
+//                    alignment: Alignment(1,0),
+//                    padding: EdgeInsets.only(top:15,left:20),
+//                    child:InkWell(
+//                      child: Text('Forgot Password',
+//                        style:TextStyle(color: Colors.green,
+//                            fontWeight:FontWeight.bold,
+//                            fontFamily: 'Montserrat',
+//                            decoration: TextDecoration.underline
+//
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+                  SizedBox
+                    (
+                    height: 60.0,
+                  ),
+                  Container(
+                    height: 60.0,
+
+                    child: RaisedButton(
+                        onPressed: validateAndSubmit,
+                        color: Colors.green,
+                        elevation: 7.0,
+
+
+                          child: Center(
+                            child: Text('LOGIN',
+                                style:TextStyle(
+                                    color: Colors.white,
+                                    fontWeight:FontWeight.bold,
+                                    fontFamily:'Montserrat'
+
+                                )),
+
+
+                          ),
+
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+
+                ],
+
+              ),
+            ),
+//            SizedBox(
+//              height: 40,
+//            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('New Here ?',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat'
+                  ),
+                ),
+                SizedBox(width: 5,),
+
+              ],
+            )
+
+
+
+          ],
+
         ),
+
         FlatButton(
           child: Text(
             'Create new account',
@@ -122,20 +269,251 @@ class _LoginPageState extends State<LoginPage> {
       ];
     } else {
       return [
-        RaisedButton(
-          child: Text(
-            'Create an Account',
-            style: TextStyle(fontSize: 20.0),
-          ),
-          onPressed: validateAndSubmit,
-        ),
-        FlatButton(
-          child: Text(
-            'Have an Account? Login',
-            style: TextStyle(fontSize: 20.0),
-          ),
-          onPressed: moveToLogin,
-        )
+
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child : Stack(
+                children: <Widget>[
+
+                  Container(
+                    padding: EdgeInsets.fromLTRB(15, 50, 0, 0),
+                    child: Text(
+                      'SIGNUP',
+                      style: TextStyle( fontSize:80,fontWeight :FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(320, 50, 0, 0),
+
+                    child: Text(
+                      '.',
+                      style: TextStyle( fontSize:80,fontWeight :FontWeight.bold,color:Colors.green),
+
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 35,left:20,right:20),
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    validator: (value) => value.isEmpty ? 'First Name can\'t be empty' : null,
+                    decoration: InputDecoration(
+                        labelText: 'First Name',
+                        labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color:Colors.grey,
+
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color:Colors.green)
+                        )
+
+
+                    ),
+
+                  ),
+                  SizedBox(height:20),
+                  TextFormField(
+                    validator: (value) => value.isEmpty ? 'Last Name can\'t be empty' : null,
+                    decoration: InputDecoration(
+                        labelText: 'Last Name',
+                        labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color:Colors.grey,
+
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color:Colors.green)
+                        )
+
+
+                    ),
+
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+                    onSaved: (value) => _email = value,
+                    decoration: InputDecoration(
+                        labelText: 'EMAIL',
+                        labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color:Colors.grey,
+
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color:Colors.green)
+                        )
+
+
+                    ),
+
+                  ),
+                  SizedBox(
+                      height:20.0
+                  ),
+
+                  TextFormField(
+                    validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+                    onSaved: (value) => _password = value,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'PASSWORD',
+                        labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color:Colors.grey,
+
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color:Colors.green)
+                        )
+
+
+                    ),
+
+                  ),
+
+
+                  SizedBox
+                    (
+                    height: 60.0,
+                  ),
+                   Container(
+                     height: 60,
+                     child: RaisedButton(
+                       onPressed: validateAndSubmit,
+//                        borderRadius: BorderRadius.circular(20.0),
+//                        shadowColor: Colors.greenAccent ,
+                       color: Colors.green,
+                       elevation: 7.0,
+
+
+                       child: Center(
+                         child: Text('SIGNUP',
+                             style:TextStyle(
+                                 color: Colors.white,
+                                 fontWeight:FontWeight.bold,
+                                 fontFamily:'Montserrat'
+
+                             )),
+
+
+                       ),
+                     ),
+                   ),
+
+
+
+
+
+                  SizedBox(
+                      height:20
+                  ),
+//                  Container(
+//                    height: 60.0,
+//                    child: Material(
+//                        borderRadius: BorderRadius.circular(20.0),
+//                        shadowColor: Colors.greenAccent ,
+//                        color: Colors.green,
+//                        elevation: 7.0,
+//                        child:GestureDetector(
+//                          onTap: (){
+////                            Navigator.push(context,MaterialPageRoute(
+////                                builder: (context)=> MyApp()
+////                            ));
+//                          },
+//                          child: Center(
+//                            child: Text('LOGIN',
+//                                style:TextStyle(
+//                                    color: Colors.black,
+//                                    fontWeight:FontWeight.bold,
+//                                    fontFamily:'Montserrat'
+//
+//                                )),
+//
+//
+//                          ),
+//                        )
+//                    ),
+//                  ),
+                FlatButton(
+                 child: Text(
+                  'Have an Account? Login',
+                  style: TextStyle(fontSize: 20.0),
+                    ),
+                     onPressed: moveToLogin,
+                      ),
+
+                  SizedBox(
+                    height: 20.0,
+                  ),
+
+                ],
+
+              ),
+            ),
+//          SizedBox(
+//            height: 40,
+//          ),
+//          Row(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//              Text('New Here ?',
+//                style: TextStyle(
+//                    fontFamily: 'Montserrat'
+//                ),
+//              ),
+//              SizedBox(width: 5,),
+//              InkWell(
+//                onTap:(){} ,
+//                child: Text('Register',
+//                  style:TextStyle(
+//                      color: Colors.green,
+//                      fontFamily: 'Monserrat',
+//                      fontWeight:FontWeight.bold,
+//                      decoration: TextDecoration.underline
+//
+//
+//
+//                  ),
+//                ),
+//              ),
+//            ],
+//          )
+//
+//
+//
+          ],
+
+
+
+      )
+//        RaisedButton(
+//          child: Text(
+//            'Create an Account',
+//            style: TextStyle(fontSize: 20.0),
+//          ),
+//          onPressed: validateAndSubmit,
+//        ),
+//        FlatButton(
+//          child: Text(
+//            'Have an Account? Login',
+//            style: TextStyle(fontSize: 20.0),
+//          ),
+//          onPressed: moveToLogin,
+//        )
       ];
     }
   }
