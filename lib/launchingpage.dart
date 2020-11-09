@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'pag1.dart';
 class lpage extends StatelessWidget {
+  var cameras;
+  lpage(this.cameras);
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -112,7 +116,7 @@ class _lpage1 extends State<lpage1>
                         color: Colors.green,
                         child:GestureDetector(
                           child: Center(
-                            child: Text('Hello User!',
+                            child: Text('Hello!',
                                 style:TextStyle(
                                     color: Colors.white,
                                     fontWeight:FontWeight.bold,
@@ -270,7 +274,7 @@ class _lpage1 extends State<lpage1>
                           child:GestureDetector(
                             onTap: (){
                               Navigator.push(context,MaterialPageRoute(
-                                  builder: (context)=> Firstpage()
+                                  builder: (context)=> Firstpage(cameras)
                               ));
                             },
                             child: Center(
@@ -285,9 +289,49 @@ class _lpage1 extends State<lpage1>
 
                             ),
                           )
+
                       ),
 
                     ),
+                    Container(
+                      alignment: Alignment(1,0),
+                      padding: EdgeInsets.only(top:15,left:50,right: 50),
+                      height:60,
+                      color: Colors.transparent,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            border:Border.all(
+                                color:Colors.black,
+                                style:BorderStyle.solid,
+                                width: 1.0
+                            ),
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(30.0),
+
+
+                          ),
+
+                          child:GestureDetector(
+                            onTap: (){
+                              FirebaseAuth.instance.signOut();
+                            },
+                            child: Center(
+                              child: Text('LOGOUT',
+                                  style:TextStyle(
+                                      color: Colors.black,
+                                      fontWeight:FontWeight.bold,
+                                      fontFamily:'Montserrat'
+
+                                  )),
+
+
+                            ),
+                          )
+
+                      ),
+
+                    ),
+
 
 
                   ]

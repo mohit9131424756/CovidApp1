@@ -1,7 +1,13 @@
 import 'main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'launchingpage.dart';
+import 'daily1.dart';
+import 'dashboard1.dart';
+
 class Firstpage extends StatelessWidget {
+  var cameras;
+  Firstpage(this.cameras);
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -18,7 +24,7 @@ class _Firstpage1 extends State<Firstpage1>
 {
   @override
   Widget build(BuildContext context) {
-    Widget buildButton(IconData icon,String buttonTitle)
+    Widget buildButton(IconData icon,String buttonTitle,t)
     {
       final Color tintColor=Colors.green;
       return new Column(
@@ -26,9 +32,19 @@ class _Firstpage1 extends State<Firstpage1>
 
           new Icon(icon,color:tintColor,size: 40,),
           new Container(
+              child: GestureDetector(
+                onTap: ()
+                {
+                  Navigator.push(context,MaterialPageRoute(
+                      builder: (context)=> t
+                  ));
+                },
+                  child:new Text(buttonTitle,style:new TextStyle(fontSize:  16.0,
+                      fontWeight:FontWeight.w600)
+          ),
 
-              child:new Text(buttonTitle,style:new TextStyle(fontSize:  16.0,
-                  fontWeight:FontWeight.w600)
+
+
 
               )
 
@@ -43,9 +59,9 @@ class _Firstpage1 extends State<Firstpage1>
         children: <Widget>[
           //new Text("Button 1",style:new TextStyle(fontSize:16.0)),
 
-          buildButton(Icons.home, "Your  Status"),
-          buildButton(Icons.assessment, "Daily assessment"),
-          buildButton(Icons.dashboard, "Dashboard"),
+          buildButton(Icons.home, "Your  Status",Firstpage(cameras)),
+          buildButton(Icons.assessment, "Daily assessment",daily(cameras)),
+          buildButton(Icons.dashboard, "Dashboard",Dashboard()),
         ],
       ),
     );
@@ -72,27 +88,75 @@ class _Firstpage1 extends State<Firstpage1>
           SizedBox(
             height: 35,
           ),
-          Text('Wash your hands for atleast 20 seconds',style:TextStyle(fontSize: 20)),
+          Container(color:Colors.green,
+            child: Text('Wash your hands for atleast 20 seconds',
+
+              style:TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Monserrat'
+              )
+          ),),
           SizedBox(
             height: 35,
           ),
-          Text('Wear a face mask compulsorily while going out of your home',style:TextStyle(fontSize: 20)),
+          Container(color:Colors.green,
+            child: Text('Wear a face mask compulsorily while going out of your home',
+
+                style:TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monserrat'
+                )
+            ),),
           SizedBox(
             height: 35,
           ),
-          Text('Avoid touching your eyes,nose or mouth',style:TextStyle(fontSize: 20),textAlign: TextAlign.center,),
+          Container(color:Colors.green,
+            child: Text('Avoid touching your eyes,nose or mouth',
+
+                style:TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monserrat'
+                )
+            ),),
           SizedBox(
             height: 35,
           ),
-          Text('If you develop a fever,cough or difficulty breathing,seek medical care as soon as possible',style:TextStyle(fontSize: 20)),
+          Container(color:Colors.green,
+            child: Text('If you develop a fever,cough or difficulty breathing,seek medical care as soon as possible',
+
+                style:TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monserrat'
+                )
+            ),),
           SizedBox(
             height: 35,
           ),
-          Text('Avoid close contact with anyone with flu-like symptomps.',style:TextStyle(fontSize: 20)),
+          Container(color:Colors.green,
+            child: Text('Avoid close contact with anyone with flu-like symptomps.',
+
+                style:TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monserrat'
+                )
+            ),),
           SizedBox(
             height: 35,
           ),
-          Text('Avoid travelling as much as possible.',style:TextStyle(fontSize: 20)),
+          Container(color:Colors.green,
+            child: Text('Avoid travelling as much as possible.',
+
+                style:TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monserrat'
+                )
+            ),),
           SizedBox(
             height: 35,
           ),

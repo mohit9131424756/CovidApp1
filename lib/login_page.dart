@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:logindemo1/main.dart';
 import 'pag1.dart';
+import 'launchingpage.dart';
+import 'dart:io';
 
 class LoginPage extends StatefulWidget {
+  var cameras;
+  LoginPage(this.cameras);
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -14,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String _email;
   String _password;
+  String k;
   FormType _formType = FormType.login;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -206,11 +212,44 @@ class _LoginPageState extends State<LoginPage> {
                     (
                     height: 60.0,
                   ),
+//                  RaisedButton(
+//                    child: Text('logout'),
+//                    onPressed: (){
+//                       FirebaseAuth.instance.signOut();
+//                    },
+//                  ),
+
                   Container(
                     height: 60.0,
 
                     child: RaisedButton(
-                        onPressed: validateAndSubmit,
+
+                      onPressed :()
+                      { validateAndSubmit();
+                        FirebaseAuth.instance
+                            .authStateChanges()
+                            .listen((User user) {
+                          if (user == null) {
+                            print('User is currently signed out!');
+
+                          } else {
+//
+
+                            // Find the Scaffold in the widget tree and use
+                            // it to show a SnackBar.
+
+                            //sleep(const Duration(seconds: 5));
+                            print('User is signed in!');
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => lpage(cameras)),
+                                    (Route<dynamic> route) => false);
+
+                          }
+                        });
+                      },
+//                     onPressed: validateAndSubmit,
+
                         color: Colors.green,
                         elevation: 7.0,
 
