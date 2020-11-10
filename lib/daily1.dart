@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'launchingpage.dart';
 import 'daily1.dart';
 import 'dashboard1.dart';
+import 'mask.dart';
 import 'pag1.dart';
 
 class daily extends StatelessWidget {
@@ -331,7 +332,10 @@ class _daily1 extends State<daily1> {
                     Navigator.push(context,MaterialPageRoute(builder: (context)=> CameraScreen(cameras)));},
                   child: Text("Measure"),color: Colors.green,textColor: Colors.white,))),
 
-                Expanded(child:Container(height:50,child: RaisedButton(onPressed: () {},child: Text("Get Status"),color: Colors.green,textColor: Colors.white,))),
+                Expanded(child:Container(height:50,child: RaisedButton(onPressed: () {
+
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=> maskScreen(cameras)));
+                },child: Text("Get Status"),color: Colors.green,textColor: Colors.white,))),
 
               ],
             ),
